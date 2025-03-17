@@ -6,18 +6,16 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideWikiSearchTest {
 
-
     @BeforeAll
-    static void beforeAll() {
-
+    static void setupConfig() {
+       Configuration.browserSize = "1920x1080" 
         Configuration.baseUrl =  "https://github.com";
         Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
 
-    void shouldFineInSoftAssertions(){
-
+    void shouldFineInSoftAssertionsTest(){
         open("/selenide/selenide");
         $("#wiki-tab").click();
         $(".filter-bar").click();
@@ -28,8 +26,5 @@ public class SelenideWikiSearchTest {
                 .sibling(0)
                 .find("pre")
                 .should(Condition.exist);
-
-
-
     }
 }
