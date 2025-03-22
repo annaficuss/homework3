@@ -8,7 +8,7 @@ public class SelenideWikiSearchTest {
 
     @BeforeAll
     static void setupConfig() {
-       Configuration.browserSize = "1920x1080" 
+       Configuration.browserSize = "1920x1080";
         Configuration.baseUrl =  "https://github.com";
         Configuration.pageLoadStrategy = "eager";
     }
@@ -25,6 +25,16 @@ public class SelenideWikiSearchTest {
                 .parent()
                 .sibling(0)
                 .find("pre")
-                .should(Condition.exist);
+                .should(Condition.text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                        "class Tests {\n" +
+                        "  @Test\n" +
+                        "  void test() {\n" +
+                        "    Configuration.assertionMode = SOFT;\n" +
+                        "    open(\"page.html\");\n" +
+                        "\n" +
+                        "    $(\"#first\").should(visible).click();\n" +
+                        "    $(\"#second\").should(visible).click();\n" +
+                        "  }\n" +
+                        "}"));
     }
 }
